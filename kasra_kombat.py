@@ -45,8 +45,9 @@ circle_radius = 150
 canvas.create_image(circle_center_x, circle_center_y, image=tk_photo)
 
 # Add a label to show the counter
-counter_label = tk.Label(root, text=str(counter), bg='#301934', fg='white')
+counter_label = tk.Label(root, text=str(counter), bg='#301934', fg='white', font=('Helvetica', 24))
 counter_label.pack()
+
 
 # Bind the click event to the circle
 canvas.bind("<Button-1>", on_circle_click)
