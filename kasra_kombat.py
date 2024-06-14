@@ -23,7 +23,7 @@ canvas = tk.Canvas(root, width=600, height=600, bg='#301934', highlightthickness
 canvas.pack()
 
 # Load your photo
-photo_path = 'C:/Users/mrkas/OneDrive/Desktop/Kasra_Kombat/WIN_20240612_17_49_44_Pro.jpg'
+photo_path = 'C:/Users/mrkas/OneDrive/Desktop/Kasra_Kombat/IMG_20240614_093049_927.jpg'
 photo_image = Image.open(photo_path)
 photo_image = ImageOps.fit(photo_image, (300, 300), Image.Resampling.LANCZOS)
 
@@ -45,6 +45,7 @@ circle_radius = 150
 canvas.create_image(circle_center_x, circle_center_y, image=tk_photo)
 
 # Add a label to show the counter
+
 counter_label = tk.Label(root, text=str(counter), bg='#301934', fg='white', font=('Helvetica', 24))
 counter_label.pack()
 
