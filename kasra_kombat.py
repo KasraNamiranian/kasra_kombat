@@ -1,5 +1,5 @@
 import tkinter as tk
-from PIL import Image, ImageTk, ImageOps
+from PIL import Image, ImageTk, ImageOps, ImageDraw
 
 def on_circle_click(event):
     global counter
@@ -23,16 +23,26 @@ canvas = tk.Canvas(root, width=600, height=600, bg='#301934', highlightthickness
 canvas.pack()
 
 # Load your photo
-photo_path = 'c:/Users/mrkas/OneDrive/Pictures/Camera Roll/WIN_20240612_17_49_44_Pro.jpg'
+photo_path = 'C:/Users/mrkas/OneDrive/Desktop/Kasra_Kombat/WIN_20240612_17_49_44_Pro.jpg'
 photo_image = Image.open(photo_path)
 photo_image = ImageOps.fit(photo_image, (300, 300), Image.Resampling.LANCZOS)
-photo_image = ImageTk.PhotoImage(photo_image)
+
+# Create a circular mask
+mask = Image.new('L', (300, 300), 0)
+draw = ImageDraw.Draw(mask)
+draw.ellipse((0, 0) + mask.size, fill=255)
+
+# Apply the mask to the photo
+photo_image.putalpha(mask)
+
+# Convert the Image object into a TkPhoto object
+tk_photo = ImageTk.PhotoImage(photo_image)
 
 # Draw a circle with your photo
 circle_center_x = 300
 circle_center_y = 300
 circle_radius = 150
-canvas.create_image(circle_center_x, circle_center_y, image=photo_image)
+canvas.create_image(circle_center_x, circle_center_y, image=tk_photo)
 
 # Add a label to show the counter
 counter_label = tk.Label(root, text=str(counter), bg='#301934', fg='white')
@@ -42,7 +52,7 @@ counter_label.pack()
 canvas.bind("<Button-1>", on_circle_click)
 
 # Keep a reference to the image object
-root.photo_image = photo_image
+root.photo_image = tk_photo
 
 # Start the GUI loop
 root.mainloop()
