@@ -23,9 +23,9 @@ canvas = tk.Canvas(root, width=600, height=600, bg='#301934', highlightthickness
 canvas.pack()
 
 # Load your photo
-photo_path = 'my_photo.jpg'
+photo_path = 'c:/Users/mrkas/OneDrive/Pictures/Camera Roll/WIN_20240612_17_49_44_Pro.jpg'
 photo_image = Image.open(photo_path)
-photo_image = ImageOps.fit(photo_image, (300, 300), Image.ANTIALIAS)
+photo_image = ImageOps.fit(photo_image, (300, 300), Image.Resampling.LANCZOS)
 photo_image = ImageTk.PhotoImage(photo_image)
 
 # Draw a circle with your photo
